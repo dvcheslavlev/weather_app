@@ -35,3 +35,4 @@ class IndexView(TemplateView):
 
 
 
+# Todo дальше - получаем за 3 дня и обновляем базу
