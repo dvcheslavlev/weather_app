@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Weather forecast application</title>
+ 	    {% load static %}
+		 <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}">
+<!--		<link rel="stylesheet" type="text/css" href="../../static/css/styles.css">-->
+	</head>
+	<body>
+		<div class="main-container flex-container">
+			<div class="introduction-block main-block">
+				<h1 class="introduction-header block-header">
+					Welcome!
+				</h1>
+				<p class="introduction-text block-text">
+					Here is my first pet project - small web-application for getting weather forecasts, based on Python Django framework to consolidate, use on practice and improve my programming skills. Like a tree, this project will grow up with new functionality, features and options.
+				</p>
+			</div>
+			<div class="weather-from-api-block main-block">
+				<h1 class="weather-from-api-header block-header">
+					Get current weather.
+				</h1>
+				<p class="weather-from-api-text block-text">
+					Here you can get a current weather in requested city. Just enter a city name (in english, case-independent) into the form below.
+				</p>
+			    <form class="weather-from-api-form" method="post" action="">
+			        {% csrf_token %}
+					{{ get_current_weather_form.as_p }}
+			        <button type="submit">Get weather</button>
+			    </form>
+				{% if current_weather_data_list %}
+					<ul class="weather-from-api-result result-text">
+						{% for data in current_weather_data_list %}
+						<li>{{ data }}</li>
+						{% endfor %}
+					</ul>
+				{% elif error_message %}
+			    <p class="error-text">
+					{{ error_message }}
+			    </p>
+				{% endif %}
+			</div>
+		</div>
+		<!-- <link href="{% static "script/script.js" %}"> -->
+		<!-- <link href="{% static "script/jquery-3.4.1.min.js" %}"> -->
+		<script src="../../static/js/jquery-3.4.1.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
